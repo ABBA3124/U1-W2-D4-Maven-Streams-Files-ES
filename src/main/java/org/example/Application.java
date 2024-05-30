@@ -5,10 +5,7 @@ import org.example.entities.Order;
 import org.example.entities.Product;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -80,5 +77,18 @@ public class Application {
         prodottoPiuCostoso.ifPresent(prodotto -> {
             System.out.println("Prodotto più costoso: " + prodotto.getName() + " - Prezzo: " + prodotto.getPrice() + "€");
         });
+
+        // --------------------------------------------esercizio 4 --------------------------------------------------
+        System.out.println("--------------------------------------------esercizio 4 --------------------------------------------------");
+
+        //media degli importi degli ordini
+        DoubleSummaryStatistics statistics = orders.stream()
+                .flatMap(order -> order.getProducts().stream())
+                .collect(Collectors.summarizingDouble(Product::getPrice));
+
+        double mediaImportiOrdini = statistics.getAverage();
+
+
+        System.out.println("Media degli importi degli ordini: " + mediaImportiOrdini + "€");
     }
 }
