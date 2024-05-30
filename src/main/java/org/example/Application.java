@@ -41,6 +41,9 @@ public class Application {
                 new Order("Spedito", LocalDate.now().minusDays(5), LocalDate.now().plusDays(3), Arrays.asList(prodotti.get(0), prodotti.get(3)), clienti.get(1))
         );
 
+
+        // --------------------------------------------esercizio 1 --------------------------------------------------
+        System.out.println("--------------------------------------------esercizio 1 --------------------------------------------------");
         //ordini per cliente
         Map<Customer, List<Order>> ordiniPerCliente = orders.stream()
                 .collect(Collectors.groupingBy(Order::getCustomer));
@@ -48,9 +51,12 @@ public class Application {
 
 //        ordiniPerCliente.forEach((cliente, ordini) -> System.out.println("cliente: " + cliente.getName() + ordini));
         ordiniPerCliente.forEach((cliente, ordini) -> {
-            System.out.println("Cliente: " + cliente.getName());
-            ordini.forEach(order -> System.out.println("\t\n-- ID ordine: " + order.getId() + " - " + "Stato: " + order.getStatus() + " - " + "Ordinato il: " + order.getOrderDate() + " - " + "Data di consegna: " + order.getDeliveryDate() + " \n\t- " + "Prodotti ordinato/i: " + order.getProducts()));
+            System.out.println("\t\nCliente: " + cliente.getName());
+            ordini.forEach(order -> System.out.println("-- ID ordine: " + order.getId() + " - " + "Stato: " + order.getStatus() + " - " + "Ordinato il: " + order.getOrderDate() + " - " + "Data di consegna: " + order.getDeliveryDate() + " \n\t- " + "Prodotti ordinato/i: " + order.getProducts()));
         });
+
+        // --------------------------------------------esercizio 2 --------------------------------------------------
+        System.out.println("--------------------------------------------esercizio 2 --------------------------------------------------");
 
     }
 }
