@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -58,5 +59,26 @@ public class Application {
         // --------------------------------------------esercizio 2 --------------------------------------------------
         System.out.println("--------------------------------------------esercizio 2 --------------------------------------------------");
 
+        //totale delle vendite per ogni cliente
+        Map<Customer, Double> totaleVenditePerCliente = orders.stream()
+                .collect(Collectors.groupingBy(Order::getCustomer, Collectors.summingDouble(order ->
+                        order.getProducts().stream().mapToDouble(Product::getPrice).sum()
+                )));
+
+
+        totaleVenditePerCliente.forEach((cliente, totaleVendite) -> {
+            System.out.println("Cliente: " + cliente.getName() + " - Totale vendite: " + totaleVendite + "€");
+        });
+
+        // --------------------------------------------esercizio 3 --------------------------------------------------
+        System.out.println("--------------------------------------------esercizio 3 --------------------------------------------------");
+
+        //prodotto più costoso
+        Optional<Product> prodottoPiuCostoso = prodotti.stream()
+                .max((prezzo1, prezzo2) -> prezzo1.getPrice().compareTo(prezzo2.getPrice()));
+
+        prodottoPiuCostoso.ifPresent(prodotto -> {
+            System.out.println("Prodotto più costoso: " + prodotto.getName() + " - Prezzo: " + prodotto.getPrice() + "€");
+        });
     }
 }
