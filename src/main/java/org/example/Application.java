@@ -28,7 +28,11 @@ public class Application {
                 new Product("Laptop", "Electronics", 1200.00),
                 new Product("s 22 ultra 5g", "Electronics", 800.00),
                 new Product("iphone 15 pro max", "Electronics", 129.99),
-                new Product("Lenovo legion go", "Electronics", 799.99)
+                new Product("Lenovo legion go", "Electronics", 799.99),
+                new Product("maglia uomo", "Man", 39.99),
+                new Product("abito donna", "Woman", 29.99),
+                new Product("ciccio gamer", "Books", 19.99),
+                new Product("il signore degli anelli", "Books", 79.90)
         );
 
         // Ordini
@@ -90,5 +94,17 @@ public class Application {
 
 
         System.out.println("Media degli importi degli ordini: " + mediaImportiOrdini + "€");
+
+        // --------------------------------------------esercizio 5 --------------------------------------------------
+        System.out.println("--------------------------------------------esercizio 5 --------------------------------------------------");
+
+        //prodotti raggruppati per categoria + calcolo della somma degli importi per ogni categoria
+        Map<String, Double> sommaImportiPerCategoria = prodotti.stream()
+                .collect(Collectors.groupingBy(Product::getCategory, Collectors.summingDouble(Product::getPrice)));
+
+        sommaImportiPerCategoria.forEach((categoria, sommaImporti) -> {
+            System.out.println("Categoria: " + categoria + " - Somma importi: " + sommaImporti + "€");
+        });
+
     }
 }
