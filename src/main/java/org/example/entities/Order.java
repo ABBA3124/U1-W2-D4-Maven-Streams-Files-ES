@@ -12,7 +12,7 @@ public class Order {
     private List<Product> products;
     private Customer customer;
 
-    public Order(String status, LocalDate orderDate, LocalDate deliveryDate, List<Product> products) {
+    public Order(String status, LocalDate orderDate, LocalDate deliveryDate, List<Product> products, Customer customer) {
         this.id = idRandom();
         this.status = status;
         this.orderDate = orderDate;
@@ -73,5 +73,17 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                ", products=" + products +
+                ", customer=" + customer +
+                '}';
     }
 }
